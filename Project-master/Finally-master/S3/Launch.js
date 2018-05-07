@@ -23,9 +23,7 @@ function recognize(user) {
 		console.log("launch button clicked");
         var email = $("#emailadress").val();
         var pass = $("#pass").val();
-    if(email=='')     alert("Please enter your email.");
 
- if(pass=='') alert("Please enter your password.");
     
 
     Backendless.UserService.login( email, pass, true).then( function( loggedInUser ) {
@@ -38,7 +36,7 @@ function recognize(user) {
         
         //not worked 
         //user not logged in
-       alert("error message - " + error.message );
+       alert( error.message );
         //error message contains reason why not
         
    });
@@ -66,16 +64,5 @@ function recognize(user) {
 
 
 
-function error(err) {
-    checkConnection();
-}
-
-function checkConnection() {
-    var networkState = navigator.connection.type;
- 
-    if(networkState = "none")
- 
-    alert('Connection type: No network connection');
-}
 
   

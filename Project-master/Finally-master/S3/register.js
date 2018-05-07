@@ -22,10 +22,7 @@ function recognize(){
         var username = $("#username").val();
         var email = $("#email").val();
         var password = $("#password").val();
-    var cpassword = $("#cpassword").val();
-    if(username=='') alert("Please enter your username.");
-    if(email=='') alert("Please enter your email address.");
-    if(password=='') alert("Please enter your password.");     
+    var cpassword = $("#cpassword").val();    
     if (password!=cpassword) alert("The passwords you entered are inconsistent, please enter again.");
     else onAddTask();
 }
@@ -63,19 +60,13 @@ function userRegistered( user )
  
 function gotError( err ) // see more on error handling
 {
-  console.log( "error message - " + err.message );
+  alert(  err.message );
   console.log( "error code - " + err.statusCode );
-      checkConnection();
+     
 }
 
 
 
-function checkConnection() {
-    var networkState = navigator.connection.type;
- 
-    if(networkState = "none")
- 
-    alert('Connection type: No network connection');
-}
+
 
   

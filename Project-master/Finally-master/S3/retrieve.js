@@ -25,11 +25,11 @@ function search(user) {
         var emailaddress = $("#emailaddress").val();
    Backendless.UserService.restorePassword( emailaddress )
  .then( function() {
-       alert("password");
+       alert("Your password has been modified and sent to your email.");
         window.location.href='index.html';
   })
  .catch( function( error ) {
-       alert(error)
+        alert(error.message );
   }); 
 
 
