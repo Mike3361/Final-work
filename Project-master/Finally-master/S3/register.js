@@ -17,6 +17,7 @@ function onPageShow() {
 } 
 
 function recognize(){
+    
     console.log("recognize");
         var username = $("#username").val();
         var email = $("#email").val();
@@ -32,29 +33,49 @@ function recognize(){
 
 function onAddTask() {
 		console.log("add task button clicked");
-        var username = $("#username").val();
-        var email = $("#email").val();
-        var password = $("#password").val();
     
-        var newTask = {
-         username,
-         email,
-        password};
+       // var newTask = {
+    //     username,
+//         email,
+//        password};
     
-        Backendless.Data.of("Register").save(newTask).then(saved).catch(error);
+    
+    
+   //     Backendless.Data.of("Register").save(newTask).then(saved).catch(error);
+    
+    var user = new Backendless.User();
+    user.email = $("#email").val();
+     user.username = $("#username").val();
+    user.password = $("#password").val();
+    
+    
+    Backendless.UserService.register( user ).then( userRegistered ).catch( gotError );
 
 }
 
-function saved(savedTask) { 
-      console.log( "new Contact instance has been saved" + savedTask);
-    window.location.href='Launch.html';
+
+
+function userRegistered( user )
+{
+  console.log( "user has been registered" );
+    window.location.href='index.html';
+}
+ 
+function gotError( err ) // see more on error handling
+{
+  console.log( "error message - " + err.message );
+  console.log( "error code - " + err.statusCode );
+      checkConnection();
 }
 
 
 
-function error(err) {
-    alert("The account you created has already existed, please recreate it." );
+function checkConnection() {
+    var networkState = navigator.connection.type;
+ 
+    if(networkState = "none")
+ 
+    alert('Connection type: No network connection');
 }
-
 
   
