@@ -240,7 +240,6 @@ function addLatLng(event) {
     var newTask = {};
     newTask = event.latLng;
     var pos = JSON.stringify(newTask);
-    alert(pos);
 
     Backendless.Data.of( "Position" ).save(newTask).then(append).catch(error);
 }
