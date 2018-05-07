@@ -2,7 +2,7 @@ Backendless.initApp("7B93C889-5309-F425-FF2A-B39F7B5AE100","F89B1CF6-AB1D-AAD8-F
 
 var watchID;
 var poly;
-var map;
+var nmap;
 
 var locationOptions = { 
 	maximumAge: 10000, 
@@ -245,12 +245,15 @@ function addLatLng(event) {
 }
 
 function  append(Position) {
-   console.log("append");
-    
-   console.log(Position);
-    //add each tasks
-    for (var i = 0; i < Position.length; i++) { 
-        
+    console.log("append");
+    var currentUser = Backendless.UserService.getCurrentUser();
+    var a = Promise.resolve(currentUser);
+// Promise {[[PromiseStatus]]: "resolved", [[PromiseValue]]: "xx"}
+a.then(function (result) { console.log(result.ownerId);
+                          var ownerId = result.ownerId;
+                           for (var i = 0; i < Position.length; i++) { 
+        if(Position[i].ownerId == ownerId)
+        {console.log(Position[i].ownerId);
         var image='bicycle.png';
         console.log(Position[i]);
         var marker = new google.maps.Marker({
@@ -259,6 +262,10 @@ function  append(Position) {
             icon:image
         });
     }
+    }});
+  
+   
+  
     
 
 
@@ -276,7 +283,7 @@ Backendless.UserService.logout()
 }
 
 function error(err) {
-     checkConnection();
+    checkConnection();
 }
 
 function checkConnection() {
